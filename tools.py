@@ -10,7 +10,7 @@ class SimpleImageViewer(object):
   def imshow(self, arr):
     if self.window is None:
       height, width, channels = arr.shape
-      self.window = pyglet.window.Window(width=width, height=height, display=self.display, caption="THOR Browser")
+      self.window = pyglet.window.Window(width=width, height=height, display=self.display, caption="Simple Image Browser")
       self.width = width
       self.height = height
       self.isopen = True
