@@ -3,7 +3,7 @@ import numpy as np
 import argparse
 import math
 
-def crop_panorama_image(img, theta=0.0, phi=0.0, res_x=256, res_y=256, fov=60.0, debug=False):
+def crop_panorama_image(img, theta=0.0, phi=0.0, res_x=512, res_y=512, fov=60.0, debug=False):
     img_x = img.shape[0]
     img_y = img.shape[1]
 
@@ -92,7 +92,6 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     img = cv2.imread(args.input_image)
-    in_img = np.concatenate((img, img), axis=1)
     out_img = crop_panorama_image(img, theta=args.theta, phi=args.phi, res_x=args.resolution_x, \
             res_y=args.resolution_y, fov=args.fov, debug=args.debug)
     cv2.imwrite(args.output_image, out_img)
