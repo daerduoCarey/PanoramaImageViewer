@@ -127,5 +127,5 @@ if __name__ == '__main__':
 
     img = load_exr(args.input_image)
     out_img = convert_panorama_image(img, theta=args.theta, phi=args.phi, res_x=args.resolution_x, \
-            res_y=args.resolution_y, debug=args.debug)
+            res_y=args.resolution_y, move=args.move, debug=args.debug)
     write_exr(args.output_image, out_img)

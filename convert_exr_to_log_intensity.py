@@ -5,8 +5,8 @@ from scipy.misc import imsave
 import matplotlib.pyplot as plt
 
 in_file = sys.argv[1]
-log_int_file = in_file.replace('.exr', '.logint.npy')
-log_int_visu_file = in_file.replace('.exr', '.logint.png')
+log_int_file = sys.argv[2]
+log_int_visu_file = sys.argv[3]
 
 pt = Imath.PixelType(Imath.PixelType.FLOAT)
 golden = OpenEXR.InputFile(in_file)
@@ -26,8 +26,7 @@ blue = np.fromstring(bluestr, dtype = np.float32)
 blue.shape = (size[1], size[0]) # Numpy arrays are (row, col)
 
 luminance = 0.2126 * red + 0.7152 * green + 0.0722 * blue
-luminance[luminance < 1] = 1
-log_intensity = np.log10(luminance)
+log_intensity = np.log10(luminance+1e-6)
 
 plt.imsave(log_int_visu_file, log_intensity, cmap='jet')
 np.save(log_int_file, log_intensity)

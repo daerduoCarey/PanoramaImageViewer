@@ -7,7 +7,7 @@ import numpy
 
 import OpenEXR
 import Imath
-import Image
+from PIL import Image
 
 
 # refer: 
@@ -32,7 +32,7 @@ def ConvertEXRToJPG(exrfile, jpgfile):
     
     rgb8 = [Image.frombytes("F", Size, c.tostring()).convert("L") for c in rgb]
     #rgb8 = [Image.fromarray(c.astype(int)) for c in rgb]
-    Image.merge("RGB", rgb8).save(jpgfile, "JPEG", quality=95)
+    Image.merge("RGB", rgb8).save(jpgfile, "PNG", quality=95)
 
 
 def EncodeToSRGB(v):
